@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Main
+/*public class Main
 {
 	public static void main(String[] args)
 	{
@@ -17,4 +17,4 @@ public class Main
 		double product = number1 * number2;
 		System.out.printf("The product of both numbers is: %f", product);
 	}
-}
+}*/
