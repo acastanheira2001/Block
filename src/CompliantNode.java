@@ -39,14 +39,14 @@ public class CompliantNode implements Node {
 
     public void receiveFromFollowees(Set<Candidate> candidates) {
         // IMPLEMENT THIS
-		Set <Transaction> tx = null;
+		Set <Transaction> tx = new HashSet <Transaction>();
 		this.candidates = candidates;
 		Iterator<Candidate> setIterator = this.candidates.iterator();
         while(setIterator.hasNext()){
            
 			Candidate candidate = setIterator.next();
 			
-			if (candidate.tx == null)
+			if (candidate.tx == null || candidate == null)
 			{
 				this.followees[candidate.sender] = false;
 				continue;
@@ -59,6 +59,8 @@ public class CompliantNode implements Node {
 			 tx.add(candidate.tx);
         }
 		this.setPendingTransaction(tx);
+		
+		
 		
     }
 }
