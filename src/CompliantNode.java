@@ -9,8 +9,8 @@ public class CompliantNode implements Node {
 	double p_txDistribution;
 	int numRounds;
 	boolean [] followees;
-	Set <Transaction> pendingTransactions;
-	Set <Candidate> candidates;
+	Set <Transaction> pendingTransactions = new HashSet <Transaction>();
+	//Set <Candidate> candidates;
 	
 	
 	
@@ -39,9 +39,9 @@ public class CompliantNode implements Node {
 
     public void receiveFromFollowees(Set<Candidate> candidates) {
         // IMPLEMENT THIS
-		Set <Transaction> tx = new HashSet <Transaction>();
-		this.candidates = candidates;
-		Iterator<Candidate> setIterator = this.candidates.iterator();
+		//Set <Transaction> tx = new HashSet <Transaction>();
+		//this.candidates = candidates;
+		Iterator<Candidate> setIterator = candidates.iterator();
         while(setIterator.hasNext()){
            
 			Candidate candidate = setIterator.next();
@@ -49,6 +49,7 @@ public class CompliantNode implements Node {
 			if (candidate.tx == null || candidate == null)
 			{
 				this.followees[candidate.sender] = false;
+				setIterator.remove();
 				continue;
 			}
 			if (this.followees[candidate.sender] != true){
@@ -56,9 +57,10 @@ public class CompliantNode implements Node {
 				 continue;
 			 }
 			
-			 tx.add(candidate.tx);
+			// tx.add(candidate.tx);
+			this.pendingTransactions.add(candidate.tx);
         }
-		this.setPendingTransaction(tx);
+		//this.setPendingTransaction(tx);
 		
 		
 		
